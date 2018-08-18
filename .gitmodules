@@ -1,0 +1,9 @@
+[submodule ".cargo"]
+	path = .cargo
+	url = https://github.com/lemonrock/.cargo.git
+[submodule "workspace/ubpf-sys/lib/ubpf"]
+	path = workspace/ubpf-sys/lib/ubpf
+	url = https://github.com/iovisor/ubpf.git
+[submodule "workspace/ubpf-sys/tools/bindgen-wrapper"]
+	path = workspace/ubpf-sys/tools/bindgen-wrapper
+	url = https://github.com/lemonrock/bindgen-wrapper.git
