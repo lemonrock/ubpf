@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="VcsDirectoryMappings">
+    <mapping directory="" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/.cargo" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/workspace/ubpf-sys/.cargo" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/workspace/ubpf-sys/lib/ubpf" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/workspace/ubpf-sys/tools/bindgen-wrapper" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/workspace/ubpf/.cargo" vcs="Git" />
+  </component>
+</project>

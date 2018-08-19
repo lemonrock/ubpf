@@ -4,5 +4,6 @@
 
 [workspace]
 members = [
+    "ubpf",
     "ubpf-sys",
 ]
