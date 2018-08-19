@@ -15,9 +15,10 @@ repository = "https://github.com/lemonrock/ubpf.git"
 exclude = ["*"]
 include = ["README.md", "LICENSE", "COPYRIGHT", "src/**/*.rs", "Cargo.toml", "rustfmt.toml", "clippy.toml", "lib/**/*", "src/**/*.h", "tools/**/*", "bindgen-wrapper.conf.d/**/*", "compile.conf.d/**/*"]
 build = "src/build.rs"
+links = "ubpf"
 readme = "README.md"
 publish = true
-version = "0.1.0"
+version = "0.1.1"
 
 [dependencies]
 libc = "^0.2"
