@@ -10,6 +10,10 @@ pub extern crate libc;
 pub mod ffi;
 
 
+/// Linux table definitions.
+pub mod tables;
+
+
 use ::libc::c_char;
 use ::libc::c_ulong;
 use ::libc::c_void;
@@ -23,12 +27,56 @@ use ::std::slice::from_raw_parts;
 use ::std::slice::from_raw_parts_mut;
 
 
-//include!("bpf_map_lookup_elem.rs");
-//include!("bpf_map_update_elem.rs");
-//include!("bpf_map_delete_elem.rs");
-//include!("bpf_ktime_get_ns.rs");
+include!("bpf_get_current_comm.rs");
+include!("bpf_get_current_pid_tgid.rs");
+include!("bpf_get_current_uid_gid.rs");
+include!("bpf_get_numa_node_id.rs");
+include!("bpf_get_prandom_u32.rs");
+include!("bpf_get_smp_processor_id.rs");
 include!("bpf_library.rs");
+include!("bpf_ktime_get_ns.rs");
+include!("bpf_probe_read.rs");
+include!("bpf_probe_read_str.rs");
 include!("bpf_trace_printk.rs");
-//include!("bpf_get_prandom_u32.rs");
-//include!("bpf_get_smp_processor_id.rs");
-//include!("bpf_get_numa_node_id.rs");
+
+
+/*
+
+ * void *bpf_map_lookup_elem(struct bpf_map *map, const void *key)
+ * 	Description
+ * 		Perform a lookup in *map* for an entry associated to *key*.
+ * 	Return
+ * 		Map value associated to *key*, or **NULL** if no entry was
+ * 		found.
+ *
+ 
+ 
+ * int bpf_map_update_elem(struct bpf_map *map, const void *key, const void *value, u64 flags)
+ * 	Description
+ * 		Add or update the value of the entry associated to *key* in
+ * 		*map* with *value*. *flags* is one of:
+ *
+ * 		**BPF_NOEXIST**
+ * 			The entry for *key* must not exist in the map.
+ * 		**BPF_EXIST**
+ * 			The entry for *key* must already exist in the map.
+ * 		**BPF_ANY**
+ * 			No condition on the existence of the entry for *key*.
+ *
+ * 		Flag value **BPF_NOEXIST** cannot be used for maps of types
+ * 		**BPF_MAP_TYPE_ARRAY** or **BPF_MAP_TYPE_PERCPU_ARRAY**  (all
+ * 		elements always exist), the helper would return an error.
+ * 	Return
+ * 		0 on success, or a negative error in case of failure.
+ *
+ 
+ 
+ * int bpf_map_delete_elem(struct bpf_map *map, const void *key)
+ * 	Description
+ * 		Delete entry with *key* from *map*.
+ * 	Return
+ * 		0 on success, or a negative error in case of failure.
+ *
+ 
+ 
+*/
