@@ -25,7 +25,8 @@ impl Execute for VirtualMachineWithByteCode
 
 impl VirtualMachineWithByteCode
 {
-	/// Compile.
+	/// Compile; only possible for x86-64.
+	#[cfg(target_arch = "x86_64")]
 	#[inline(always)]
 	pub fn compile(self) -> Result<VirtualMachineWithCompiledByteCode, ByteCodeCompileError>
 	{

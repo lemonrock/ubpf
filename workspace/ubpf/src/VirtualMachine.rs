@@ -106,6 +106,7 @@ impl VirtualMachine
 		let bytecode: &[u8] = bytes.borrow();
 		
 		let potential_bytecode_length = bytecode.len();
+		debug_assert_eq!(potential_bytecode_length % 8, 0, "eBPF_bytecode length must be a multiple of 8; length was '{}'", potential_bytecode_length);
 		debug_assert!(potential_bytecode_length < ::std::u32::MAX as usize, "Can not load more than ::std::u32::MAX - 1 bytecode bytes");
 		let bytecode_length = potential_bytecode_length as u32;
 		
@@ -131,9 +132,13 @@ impl VirtualMachine
 	
 	/// Load from the bytes of an ELF file which is:-
 	///
-	/// * little-endian
-	/// * 64-bit
-	/// * with a single text section containing eBPF bytecodes
+	/// * little-endian.
+	/// * 64-bit.
+	/// * with a single text section containing eBPF bytecodes.
+	/// * Version 1 (they all are).
+	/// * Has an OS ABI of 'NONE'.
+	/// * Is relocatable.
+	/// * Has a machine of `NONE` or `BPF`.
 	///
 	/// This is the format produced by Clang.
 	#[inline(always)]

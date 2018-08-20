@@ -2,14 +2,25 @@
 // Copyright © 2017 The developers of ubpf. See the COPYRIGHT file in the top-level directory of this distribution and at https://raw.githubusercontent.com/lemonrock/ubpf/master/COPYRIGHT.
 
 
-#![allow(non_snake_case)]
-#![deny(missing_docs)]
-#![feature(core_intrinsics)]
+/// BPF program file descriptor (FD).
+#[derive(Default, Debug, Copy, Clone, PartialEq, Eq, PartialOrd, Ord, Hash)]
+#[repr(transparent)]
+pub struct BpfFileDescriptor(pub RawFd);
 
+impl From<RawFd> for BpfFileDescriptor
+{
+	#[inline(always)]
+	fn from(value: RawFd) -> Self
+	{
+		BpfFileDescriptor(value)
+	}
+}
 
-//! # ubpf
-//!
-//! Mid-level rust bindings around the ubpf (libubpf) FFI bindings in ubpf-sys.
-
-
-#[cfg(any(target_os = "android", target_os = "linux"))] include!("lib.cfg.rs");
+impl Into<RawFd> for BpfFileDescriptor
+{
+	#[inline(always)]
+	fn into(self) -> RawFd
+	{
+		self.0
+	}
+}

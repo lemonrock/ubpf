@@ -2,14 +2,16 @@
 // Copyright © 2017 The developers of ubpf. See the COPYRIGHT file in the top-level directory of this distribution and at https://raw.githubusercontent.com/lemonrock/ubpf/master/COPYRIGHT.
 
 
-#![allow(non_snake_case)]
-#![deny(missing_docs)]
-#![feature(core_intrinsics)]
-
-
-//! # ubpf
-//!
-//! Mid-level rust bindings around the ubpf (libubpf) FFI bindings in ubpf-sys.
-
-
-#[cfg(any(target_os = "android", target_os = "linux"))] include!("lib.cfg.rs");
+/// Value or next key for the `bpf_cmd::MAP_LOOKUP_ELEM`, `bpf_cmd::MAP_UPDATE_ELEM` and `bpf_cmd::MAP_DELETE_ELEM` commands.
+///
+/// Anonymously named in original C sources.
+#[repr(C, align(8))]
+#[derive(Copy, Clone)]
+pub union MapElementValueOrNextKey
+{
+	/// Non-null pointer to a value.
+	pub value: *mut u8,
+	
+	/// Non-null pointer to a next key.
+	pub next_key: *mut u8,
+}

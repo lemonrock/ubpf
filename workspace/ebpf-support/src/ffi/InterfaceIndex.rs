@@ -2,14 +2,25 @@
 // Copyright © 2017 The developers of ubpf. See the COPYRIGHT file in the top-level directory of this distribution and at https://raw.githubusercontent.com/lemonrock/ubpf/master/COPYRIGHT.
 
 
-#![allow(non_snake_case)]
-#![deny(missing_docs)]
-#![feature(core_intrinsics)]
+/// An interface index, ?1-based?
+#[derive(Default, Debug, Copy, Clone, PartialEq, Eq, PartialOrd, Ord, Hash)]
+#[repr(transparent)]
+pub struct InterfaceIndex(u32);
 
+impl From<u32> for InterfaceIndex
+{
+	#[inline(always)]
+	fn from(value: u32) -> Self
+	{
+		InterfaceIndex(value)
+	}
+}
 
-//! # ubpf
-//!
-//! Mid-level rust bindings around the ubpf (libubpf) FFI bindings in ubpf-sys.
-
-
-#[cfg(any(target_os = "android", target_os = "linux"))] include!("lib.cfg.rs");
+impl Into<u32> for InterfaceIndex
+{
+	#[inline(always)]
+	fn into(self) -> u32
+	{
+		self.0
+	}
+}

@@ -2,14 +2,19 @@
 // Copyright © 2017 The developers of ubpf. See the COPYRIGHT file in the top-level directory of this distribution and at https://raw.githubusercontent.com/lemonrock/ubpf/master/COPYRIGHT.
 
 
-#![allow(non_snake_case)]
-#![deny(missing_docs)]
-#![feature(core_intrinsics)]
-
-
-//! # ubpf
-//!
-//! Mid-level rust bindings around the ubpf (libubpf) FFI bindings in ubpf-sys.
-
-
-#[cfg(any(target_os = "android", target_os = "linux"))] include!("lib.cfg.rs");
+/// Struct used by the `bpf_cmd::OBJ_PIN` and `bpf_cmd::OBJ_GET` bpf syscall commands.
+///
+/// Anonymously named in original C sources.
+#[repr(C, align(8))]
+#[derive(Debug, Clone, PartialEq, Eq, PartialOrd, Ord, Hash)]
+pub struct ObjectAttributes
+{
+	/// Pointer to NUL-terminated C string.
+	pub pathname: *mut c_char,
+	
+	/// File descriptor (FD).
+	pub bpf_fd: BpfFileDescriptor,
+	
+	/// ?
+	pub file_flags: ObjectFileFlags,
+}

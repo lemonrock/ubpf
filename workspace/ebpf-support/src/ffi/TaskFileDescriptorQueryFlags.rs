@@ -2,14 +2,11 @@
 // Copyright © 2017 The developers of ubpf. See the COPYRIGHT file in the top-level directory of this distribution and at https://raw.githubusercontent.com/lemonrock/ubpf/master/COPYRIGHT.
 
 
-#![allow(non_snake_case)]
-#![deny(missing_docs)]
-#![feature(core_intrinsics)]
-
-
-//! # ubpf
-//!
-//! Mid-level rust bindings around the ubpf (libubpf) FFI bindings in ubpf-sys.
-
-
-#[cfg(any(target_os = "android", target_os = "linux"))] include!("lib.cfg.rs");
+bitflags!
+{
+	/// Flags used for the `bpf_cmd::TASK_FD_QUERY` bpf syscall command.
+	pub struct TaskFileDescriptorQueryFlags: u32
+	{
+		const None = 0;
+	}
+}

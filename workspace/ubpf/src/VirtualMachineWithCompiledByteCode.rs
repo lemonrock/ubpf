@@ -3,7 +3,10 @@
 
 
 /// Represents a virtual machine with loaded, parsed and compiled byte code and registered external functions.
+///
+/// Only exists for x86-64 currently.
 #[derive(Debug, PartialEq, Eq)]
+#[cfg(target_arch = "x86_64")]
 pub struct VirtualMachineWithCompiledByteCode
 {
 	function_pointer: unsafe extern "C" fn(mem: *mut c_void, mem_len: usize) -> u64,

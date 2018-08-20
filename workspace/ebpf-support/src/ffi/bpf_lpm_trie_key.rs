@@ -2,14 +2,14 @@
 // Copyright © 2017 The developers of ubpf. See the COPYRIGHT file in the top-level directory of this distribution and at https://raw.githubusercontent.com/lemonrock/ubpf/master/COPYRIGHT.
 
 
-#![allow(non_snake_case)]
-#![deny(missing_docs)]
-#![feature(core_intrinsics)]
-
-
-//! # ubpf
-//!
-//! Mid-level rust bindings around the ubpf (libubpf) FFI bindings in ubpf-sys.
-
-
-#[cfg(any(target_os = "android", target_os = "linux"))] include!("lib.cfg.rs");
+/// Key layout for a `bpf_map_type::LPM_TRIE`.
+#[repr(C)]
+#[derive(Debug)]
+pub struct bpf_lpm_trie_key
+{
+	/// Prefix length.
+	pub prefixlen: u32,
+	
+	/// Up to 32 for `AF_INET`, 128 for `AF_INET6`.
+	pub data: __IncompleteArrayField<u8>,
+}

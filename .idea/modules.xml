@@ -2,6 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/workspace/ebpf-support/ebpf-support.iml" filepath="$PROJECT_DIR$/workspace/ebpf-support/ebpf-support.iml" />
       <module fileurl="file://$PROJECT_DIR$/workspace/ubpf/ubpf.iml" filepath="$PROJECT_DIR$/workspace/ubpf/ubpf.iml" />
       <module fileurl="file://$PROJECT_DIR$/workspace/ubpf-sys/ubpf-sys.iml" filepath="$PROJECT_DIR$/workspace/ubpf-sys/ubpf-sys.iml" />
     </modules>

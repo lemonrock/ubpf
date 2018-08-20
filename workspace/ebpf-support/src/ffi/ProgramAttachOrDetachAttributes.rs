@@ -2,14 +2,22 @@
 // Copyright © 2017 The developers of ubpf. See the COPYRIGHT file in the top-level directory of this distribution and at https://raw.githubusercontent.com/lemonrock/ubpf/master/COPYRIGHT.
 
 
-#![allow(non_snake_case)]
-#![deny(missing_docs)]
-#![feature(core_intrinsics)]
-
-
-//! # ubpf
-//!
-//! Mid-level rust bindings around the ubpf (libubpf) FFI bindings in ubpf-sys.
-
-
-#[cfg(any(target_os = "android", target_os = "linux"))] include!("lib.cfg.rs");
+/// Struct used by `bpf_cmd::PROG_ATTACH` and `bpf_cmd::PROG_DETACH` bpf syscall commands.
+///
+/// Anonymously named in original C sources.
+#[repr(C, align(8))]
+#[derive(Debug, Copy, Clone)]
+pub struct ProgramAttachOrDetachAttributes
+{
+	/// Container object to attach to (file descriptor, FD).
+	pub target_fd: ContainerObjectFileDescriptor,
+	
+	/// eBPF program to attach to (file descriptor, FD).
+	pub attach_bpf_fd: BpfFileDescriptor,
+	
+	/// Attach type.
+	pub attach_type: bpf_attach_type,
+	
+	/// Attach flags.
+	pub attach_flags: ProgramAttachOrDetachFlags,
+}
